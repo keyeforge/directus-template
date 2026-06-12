@@ -1,0 +1,12 @@
+{
+  "name": "directus-extension-data-scope-filter",
+  "version": "1.0.0",
+  "type": "module",
+  "keywords": ["directus", "directus-extension", "directus-hook"],
+  "directus:extension": {
+    "type": "hook",
+    "path": "index.js",
+    "source": "index.js",
+    "host": "^11.0.0"
+  }
+}
