@@ -78,6 +78,10 @@ docker compose restart directus
 #### 3.1 CRM 业务模块
 
 ```bash
+# 产品（报价明细 quote_items.product_id 依赖此表）
+sqlite3 database/data.db < scripts/bootstrap-products.sql
+docker compose restart directus
+
 # 客户（含 customer_follow_ups 跟进记录）
 sqlite3 database/data.db < scripts/bootstrap-customers.sql
 docker compose restart directus
@@ -95,8 +99,6 @@ sqlite3 database/data.db < scripts/bootstrap-quotes.sql
 docker compose restart directus
 ```
 
-> **产品（products）**：当前无 bootstrap 脚本，需在 Directus 后台手动创建集合，或使用已有集合。
-
 #### 3.2 组织与权限模型
 
 ```bash
@@ -112,6 +114,7 @@ docker compose restart directus
 
 | 脚本 | 说明 |
 |------|------|
+| `bootstrap-products.sql` | 产品目录 |
 | `bootstrap-customers.sql` | 客户表、跟进记录 |
 | `bootstrap-contacts.sql` | 联系人（关联客户） |
 | `bootstrap-opportunities.sql` | 商机（关联客户） |
@@ -127,6 +130,7 @@ docker compose restart directus
 若环境已就绪，可合并执行（仍建议在首次部署时分步验证）：
 
 ```bash
+sqlite3 database/data.db < scripts/bootstrap-products.sql
 sqlite3 database/data.db < scripts/bootstrap-customers.sql
 sqlite3 database/data.db < scripts/bootstrap-contacts.sql
 sqlite3 database/data.db < scripts/bootstrap-opportunities.sql

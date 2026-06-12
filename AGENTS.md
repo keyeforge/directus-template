@@ -72,6 +72,7 @@ nodemp/
 ├── uploads/                    # Directus 文件上传目录
 │
 ├── scripts/                    # 数据模型 bootstrap SQL（幂等，可重复执行）
+│   ├── bootstrap-products.sql
 │   ├── bootstrap-customers.sql
 │   ├── bootstrap-contacts.sql
 │   ├── bootstrap-opportunities.sql
@@ -170,7 +171,7 @@ Bootstrap 脚本按依赖顺序执行。各脚本创建 SQLite 表并注册 Dire
 | `contacts` | bootstrap-contacts.sql | 联系人（关联 customer） |
 | `opportunities` | bootstrap-opportunities.sql | 商机（关联 customer） |
 | `quotes` / `quote_items` | bootstrap-quotes.sql | 报价及明细 |
-| `products` | — | 需在 Directus 中手动创建或使用已有集合 |
+| `products` | bootstrap-products.sql | 产品目录 |
 | `departments` | bootstrap-departments.sql | 部门树 |
 | `policy_data_scopes` | bootstrap-policy-data-scopes.sql | 策略 → 集合 → 数据范围 |
 
@@ -284,6 +285,13 @@ cd frontend && npm run dev
 首次启动前复制 `.env.example` 为 `.env` 并配置 `SECRET`、`ADMIN_EMAIL`、`ADMIN_PASSWORD`。
 
 ### 数据模型 Bootstrap（按依赖顺序，各执行一次）
+
+**产品管理**：
+
+```bash
+sqlite3 database/data.db < scripts/bootstrap-products.sql
+docker compose restart directus
+```
 
 **客户管理**：
 

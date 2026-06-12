@@ -1,7 +1,7 @@
 -- 报价管理集合（Directus SQLite）
 -- 用法: sqlite3 database/data.db < scripts/bootstrap-quotes.sql
 -- 执行后请重启 Directus: docker compose restart directus
--- 依赖: 需先执行 bootstrap-customers.sql、bootstrap-opportunities.sql
+-- 依赖: 需先执行 bootstrap-products.sql、bootstrap-customers.sql、bootstrap-opportunities.sql
 
 CREATE TABLE IF NOT EXISTS quotes (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
